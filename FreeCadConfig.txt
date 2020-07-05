@@ -1,0 +1,85 @@
+Freecad on Raspberry Pi 3
+
+Configure openGL
+sudo raspi-config - Options - GL driver
+
+1. Legacy GL driver
+Start FreeCad - CPU to 104% - crashed system requiring hard reboot
+
+2.  Full KMS 
+FreeCad starts.
+File -> new (intending to start a new drawing, I think, not got there yet.) 
+Causes FreeCad to crash (exit) Raspberry Pi OS OK. 
+
+3.  Fake KMS 
+FreeCad starts.
+File -> new . Causes FreeCad to crash (exit) Raspberry Pi OS OK. 
+
+Increase GPU memory??
+
+4. 64 all the way to 256 ??
+Still fake KMS
+ - FC still exits on file new
+ - tests - won't even start. Good a few done before (on full KMS??) until segmentation fault.
+
+5. Full KWS, 256 GPU mem
+got to testHole test, which is a bit further, I think
+
+enable xcompmgr - Compositor ?? whatever that is?
+didn't do anything.
+
+6. 512 and 300 MB GPU. OS OK, FC tests not even run.
+
+7. Back to 256MG GPU, Full KMS. same as 5. :)
+
+8....?? Recompile Freecad?? Nvidia driver that works for Quake3..? 275 GPU Mem..?
+
+
+
+
+
+
+
+
+
+
+
+
+Appendix
+
+Test 5 result.
+FreeCAD 0.18, Libs: 0.18R
+© Juergen Riegel, Werner Mayer, Yorik van Havre 2001-2019
+  #####                 ####  ###   ####  
+  #                    #      # #   #   # 
+  #     ##  #### ####  #     #   #  #   # 
+  ####  # # #  # #  #  #     #####  #   # 
+  #     #   #### ####  #    #     # #   # 
+  #     #   #    #     #    #     # #   #  ##  ##  ##
+  #     #   #### ####   ### #     # ####   ##  ##  ##
+
+import TestFemCommon 
+import TestObjectCreate 
+import TestObjectType 
+import TestMeshCommon 
+import TestMeshEleTetra10 
+import TestResult 
+import TestCcxTools 
+import TestSolverFrameWork 
+testBoxCase (TestSketcherApp.SketcherSolverTestCases) ... ok
+testIssue3245 (TestSketcherApp.SketcherSolverTestCases) ... ok
+testIssue3245_2 (TestSketcherApp.SketcherSolverTestCases) ... ok
+testSlotCase (TestSketcherApp.SketcherSolverTestCases) ... ok
+testBooleanCommonCase (PartDesignTests.TestBoolean.TestBoolean) ... ok
+testBooleanCutCase (PartDesignTests.TestBoolean.TestBoolean) ... ok
+testBooleanFuseCase (PartDesignTests.TestBoolean.TestBoolean) ... ok
+testChamferCubeToOctahedron (PartDesignTests.TestChamfer.TestChamfer) ... ok
+testXAxisDatumLine (PartDesignTests.TestDatum.TestDatumLine) ... ok
+testXYDatumPlane (PartDesignTests.TestDatum.TestDatumPlane) ... ok
+testOriginDatumPoint (PartDesignTests.TestDatum.TestDatumPoint) ... ok
+testSimpleDraft (PartDesignTests.TestDraft.TestDraft) ... ok
+testFilletCubeToSphere (PartDesignTests.TestFillet.TestFillet) ... ok
+testAngledDrillHole (PartDesignTests.TestHole.TestHole) ... ok
+testCounterboreHole (PartDesignTests.TestHole.TestHole) ... ok
+testCountersinkHole (PartDesignTests.TestHole.TestHole) ... Program received signal SIGSEGV, Segmentation fault.
+#0  /lib/arm-linux-gnueabihf/libc.so.6(__default_sa_restorer+0) [0x733df120]
